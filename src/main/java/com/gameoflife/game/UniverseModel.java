@@ -27,4 +27,38 @@ public class UniverseModel {
     public int[][] getMap() {
         return map;
     }
+
+
+    public void nextGeneration() {
+        var newGen = new int[height][width];
+        int aliveNeighbours = 0;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                aliveNeighbours = countAliveNeighbours(i, j);
+                if (map[i][j] == ALIVE) {
+                    newGen[i][j] = (aliveNeighbours < 2 || aliveNeighbours > 3) ? DEAD : ALIVE;
+                } else if (map[i][j] == DEAD) {
+                    newGen[i][j] = aliveNeighbours == 3 ? ALIVE : DEAD;
+                }
+
+//                if (newGen[i][j] == ALIVE) {
+//                    countAlive++;
+//                }
+            }
+        }
+        map = newGen;
+    }
+
+    public int countAliveNeighbours(int i, int j) {
+        int countAliveNeighbours = 0;
+        for (int k = i - 1; k <= i + 1; k++) {
+            for (int l = j - 1; l <= j + 1; l++) {
+                if (k == i && l == j) continue;
+                if (map[Math.floorMod(k, height)][Math.floorMod(l, width)] == ALIVE) {
+                    countAliveNeighbours++;
+                }
+            }
+        }
+        return countAliveNeighbours;
+    }
 }

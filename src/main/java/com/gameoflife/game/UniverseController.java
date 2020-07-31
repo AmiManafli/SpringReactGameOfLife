@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 public class UniverseController {
     private Test test;
     private UniverseModel universe;
+    private int BOARD_HEIGHT = 30;
+    private int BOARD_WIDTH = 40;
 
     @Autowired
     public UniverseController() {
@@ -43,12 +45,23 @@ public class UniverseController {
         return json;
     }
 
-    @GetMapping(value = "/map"/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
+    @GetMapping(value = "/new-map"/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
     String testMap() {
+        universe = new UniverseModel(BOARD_WIDTH, BOARD_HEIGHT);
         int[][] data = universe.getMap();
         Gson gson = new Gson();
         String json = gson.toJson(data);
         return json;
     }
+
+    @GetMapping(value = "/next-gen"/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
+    String nextGen() {
+        universe.nextGeneration();
+        int[][] data = universe.getMap();
+        Gson gson = new Gson();
+        String json = gson.toJson(data);
+        return json;
+    }
+
 
 }
