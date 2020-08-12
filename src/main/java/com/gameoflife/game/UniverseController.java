@@ -1,53 +1,30 @@
 package com.gameoflife.game;
 
-import net.minidev.json.JSONObject;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.google.gson.Gson;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class UniverseController {
-    private Test test;
     private UniverseModel universe;
-    private int BOARD_HEIGHT = 30;
-    private int BOARD_WIDTH = 40;
+    private int boardHeight = 30;
+    private int boardWidth = 40;
 
     @Autowired
     public UniverseController() {
         super();
-        this.test = new Test(1);
-        this.universe  = new UniverseModel(40, 30);
+        this.universe  = new UniverseModel(boardWidth, boardHeight);
     }
 
-    @GetMapping("/hello")
-    String testString() {
-        return "Hello!";
-    }
-
-    @GetMapping("/hellojson")
-    JSONObject testJson() {
-        JSONObject obj = new JSONObject();
-        obj.put("name", "foo");
-        return obj;
-    }
-
-    @GetMapping("/onedimarray")
-    String testModel() {
-        int[][] data = {{1, 2, 3}, {3, 4, 5}, {4, 5, 6}};
-        Gson gson = new Gson();
-        String json = gson.toJson(test.getTwoDimArr());
-        return json;
-    }
 
     @GetMapping(value = "/new-map"/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
-    String testMap() {
-        universe = new UniverseModel(BOARD_WIDTH, BOARD_HEIGHT);
+    String newMap() {
+        universe = new UniverseModel(boardWidth, boardHeight);
         int[][] data = universe.getMap();
         Gson gson = new Gson();
         String json = gson.toJson(data);
@@ -63,5 +40,34 @@ public class UniverseController {
         return json;
     }
 
+    @PostMapping(path = "/set-board-size")
+    void setBoardSize(@RequestBody String json) {
+        JsonElement jsonTree = JsonParser.parseString(json);
+        JsonObject jsonObject = jsonTree.getAsJsonObject();
+        JsonElement height = jsonObject.get("height");
+        JsonElement width = jsonObject.get("width");
+        this.setBoardHeight(height.getAsInt());
+        this.setBoardWidth(width.getAsInt());
+    }
+
+    @PostMapping(path ="/clear-map")
+    void clearMap() {
+        universe.clearMap();
+        int[][] map = universe.getMap();
+        for (int i = 0; i < boardHeight; i++) {
+            for (int j = 0; j < boardWidth; j++) {
+                System.out.println(map[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    void setBoardHeight(int newHeight) {
+        this.boardHeight = newHeight;
+    }
+
+    void setBoardWidth(int newWidth) {
+        this.boardWidth = newWidth;
+    }
 
 }

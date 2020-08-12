@@ -28,6 +28,13 @@ public class UniverseModel {
         return map;
     }
 
+    public void clearMap() {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                map[i][j] = DEAD;
+            }
+        }
+    }
 
     public void nextGeneration() {
         var newGen = new int[height][width];
@@ -40,10 +47,6 @@ public class UniverseModel {
                 } else if (map[i][j] == DEAD) {
                     newGen[i][j] = aliveNeighbours == 3 ? ALIVE : DEAD;
                 }
-
-//                if (newGen[i][j] == ALIVE) {
-//                    countAlive++;
-//                }
             }
         }
         map = newGen;
