@@ -1,0 +1,15 @@
+App <- states here
+|__Header
+|  |__Logo
+|  |__Light/Bright mode toggle
+|__Controls
+|  |__Button-Group
+|  |  |__New-Map - random / preset
+|  |  |__Run / Stop
+|  |  |__Clear
+|  |__Slider
+|  |__Color-Scheme
+|__Game-Rules
+|__Game-Board
+   |__Cells
+

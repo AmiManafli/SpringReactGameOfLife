@@ -1,0 +1,10 @@
+.Logo {
+    width: auto;
+    color: #f0efef;
+    font-size: 1.5rem;
+    line-height: 100%;
+    text-transform: uppercase;
+    font-weight: normal;
+    letter-spacing: +2px;
+    white-space: nowrap;
+}

@@ -1,0 +1,8 @@
+.SliderWrapper  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 0.5rem;
+    padding-left: 0.3rem;
+}

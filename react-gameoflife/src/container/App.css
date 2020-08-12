@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+.App main {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+  height: 640px;
+  margin: 0;
+  padding: .5rem 1.5rem;
+}
+
+
