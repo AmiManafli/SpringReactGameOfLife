@@ -79,7 +79,7 @@ class App extends Component {
       window.clearTimeout(this.timeoutHandler);
       this.timeoutHandler = window.setTimeout(
           () => {this.nextGeneration();}, 
-          this.state.interval / 10);
+          this.state.interval);
   }
 
   updateBoardSize = async() => {
@@ -110,7 +110,7 @@ class App extends Component {
   }
 
   handleIntervalChange = (value) => {
-      this.setState({ interval: value});
+      this.setState({ interval: 1000 / value});
   }
 
   render() {
@@ -133,7 +133,6 @@ class App extends Component {
         speedChangeHandler={this.handleIntervalChange}
         />
         <button onClick={this.updateBoardSize}>New Board Size!</button>
-        <h3>{this.state.interval}</h3>
 
       <GameBoard  gridStyle={gridStyle} cells={cells}/>     
       </main>

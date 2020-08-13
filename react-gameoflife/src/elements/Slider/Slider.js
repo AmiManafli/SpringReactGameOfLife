@@ -47,7 +47,7 @@ const PrettoSlider = withStyles({
 
   export default function Test({onChangeHandler}) {
         const classes = useStyles();
-        const [ value, setValue ] = useState(100);
+        const [ value, setValue ] = useState(3);
         const onChange = (event, val) => {
             if (onChangeHandler) {
                 onChangeHandler(val);
@@ -64,11 +64,11 @@ const PrettoSlider = withStyles({
                     </label>
                 <PrettoSlider 
                     value={value}
-                    defaultValue={100}
-                    step={100}
+                    defaultValue={3}
+                    step={0.5}
                     marks
-                    min={100}
-                    max={1000}
+                    min={1}
+                    max={4.9}
                     valueLabelDisplay="auto"
                     onChange={(event, val) => setValue(val)}
                     onChangeCommitted={onChange}/>
