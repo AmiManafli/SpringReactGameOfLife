@@ -7,7 +7,6 @@ import GameBoard from '../components/GameBoard/GameBoard';
 import Controls from '../components/GameProperties/Controls/Controls';
 import classes from './App.css';
 
-const CELL_SIZE = 10;
 const WIDTH = 640;
 const HEIGHT = 480;
 //64x48
@@ -15,8 +14,9 @@ const HEIGHT = 480;
 class App extends Component {
   constructor() {
     super();
-    this.rows = HEIGHT / CELL_SIZE;
-    this.cols = WIDTH / CELL_SIZE;
+    this.cellSize = 10;
+    this.rows = HEIGHT / this.cellSize;
+    this.cols = WIDTH / this.cellSize;
     this.board = this.makeEmptyBoard();
     this.receiveMap = this.receiveMap.bind(this);
   }
@@ -82,9 +82,11 @@ class App extends Component {
           this.state.interval);
   }
 
-  updateBoardSize = async() => {
-    const newHeight = 48;
-    const newWidth = 64;
+  updateBoardSize = async(param) => {
+    console.log("your param: ", param);
+    this.setNewCellSize(param);
+    const newHeight = HEIGHT/param;
+    const newWidth = WIDTH/param;
     const requestOptions = {
       method: 'POST',
       headers: { 
@@ -94,6 +96,14 @@ class App extends Component {
   };
   fetch('http://localhost:8080/api/set-board-size', requestOptions)
   .then(this.receiveMap);  
+}
+
+setNewCellSize = (cellSize) => {
+    this.cellSize = cellSize;
+    this.rows = HEIGHT / cellSize;
+    this.cols = WIDTH / cellSize;
+    this.board = this.makeEmptyBoard();
+    console.log("new rows and cols: ", this.rows, this.cols);
 }
 
   runGenerations = () => {
@@ -113,12 +123,14 @@ class App extends Component {
       this.setState({ interval: 1000 / value});
   }
 
+
+
   render() {
     const { cells } = this.state;
     const gridStyle = {
         width: WIDTH,
         height: HEIGHT,
-        backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
+        backgroundSize: `${this.cellSize}px ${this.cellSize}px`,
     }
     return (
       <div className="App">
@@ -131,10 +143,11 @@ class App extends Component {
         stopHandler={this.stopGame}
         clearHandler={this.handleClear}
         speedChangeHandler={this.handleIntervalChange}
+        sizeChangeHandler={this.updateBoardSize}
         />
         <button onClick={this.updateBoardSize}>New Board Size!</button>
 
-      <GameBoard  gridStyle={gridStyle} cells={cells}/>     
+      <GameBoard  gridStyle={gridStyle} cells={cells} cellSize={this.cellSize}/>     
       </main>
       </div>
     )
