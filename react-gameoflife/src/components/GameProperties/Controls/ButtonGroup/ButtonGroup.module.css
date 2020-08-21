@@ -1,3 +1,7 @@
+.BtnGroup {
+    align-self: center;
+}
+
 .BtnGroup button {
   background-color: #b0aac0; /* Green background */
   border: 1px solid #c5c1cf; /* Green border */
