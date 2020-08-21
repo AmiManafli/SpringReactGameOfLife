@@ -55,11 +55,7 @@ const PrettoSlider = withStyles({
         }
         return (
             <div className={sliderClasses.SliderWrapper}>
-                <label style={{
-                    textTransform: "uppercase",
-                    fontSize: "0.9rem",
-                    letterSpacing: "+0.05rem"
-                    }}>
+                <label>
                         Speed    
                     </label>
                 <PrettoSlider 

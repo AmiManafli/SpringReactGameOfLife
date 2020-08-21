@@ -5,7 +5,9 @@ import Header from '../components/Header/Header';
 import Button from '../elements/Button/Button';
 import GameBoard from '../components/GameBoard/GameBoard';
 import Controls from '../components/GameProperties/Controls/Controls';
+import PropertiesPanel from '../components/GameProperties/PropertiesPanel';
 import classes from './App.css';
+
 
 const WIDTH = 640;
 const HEIGHT = 480;
@@ -144,7 +146,10 @@ class App extends Component {
         speedChangeHandler={this.handleIntervalChange}
         sizeChangeHandler={this.updateBoardSize}
         />
-        <GameBoard  gridStyle={gridStyle} cells={cells} cellSize={this.cellSize}/>     
+
+        <PropertiesPanel>
+            <GameBoard  gridStyle={gridStyle} cells={cells} cellSize={this.cellSize}/>     
+        </PropertiesPanel>
         </main>
         </div>
     )

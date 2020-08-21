@@ -3,6 +3,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 0.5rem;
-    padding-left: 0.3rem;
+    padding: 9px;
+}
+
+.SliderWrapper label {
+    text-transform: uppercase;
+    letter-spacing: +0.05rem;
+    font-size: 0.95rem;
 }
