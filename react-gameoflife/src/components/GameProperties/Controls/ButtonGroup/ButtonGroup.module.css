@@ -1,0 +1,31 @@
+.BtnGroup button {
+  background-color: #b0aac0; /* Green background */
+  border: 1px solid #c5c1cf; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+.BtnGroup button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+  }
+
+.BtnGroup button:last-child {
+    border-radius: 0 15px 15px 0;
+}
+
+.BtnGroup button:first-child {
+    border-radius: 15px 0 0 15px;
+}
+  /* Clear floats (clearfix hack) */
+.BtnGroup:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+
+  .BtnGroup button:hover {
+    background-color: #c5c1cf;
+  }

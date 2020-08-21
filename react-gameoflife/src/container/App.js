@@ -83,7 +83,7 @@ class App extends Component {
     }
 
     updateBoardSize = async(param) => {
-        // this.stopGame();
+        this.stopGame();
         this.setNewCellSize(param);
         const newHeight = HEIGHT/param;
         const newWidth = WIDTH/param;

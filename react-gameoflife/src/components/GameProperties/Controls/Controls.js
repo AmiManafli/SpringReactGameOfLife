@@ -3,6 +3,7 @@ import React from 'react';
 import classes from './Controls.module.css';
 import Button from '../../../elements/Button/Button';
 import Slider from '../../../elements/Slider/Slider';
+import ButtonGroup from '../Controls/ButtonGroup/ButtonGroup';
 
 class Controls extends React.Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class Controls extends React.Component {
                     <Button type="submit" name="test" clicked={this.props.clearHandler}>Clear</Button>    
                 </div>
                 <Slider onChangeHandler={this.props.speedChangeHandler}/> 
+                <ButtonGroup />
                 <div className={classes.ControlButtonsWrapper}>
                     <Button type="submit" clicked={() => sizeChangeHandler(5)}>128x96</Button>
                     <Button type="submit" clicked={() => sizeChangeHandler(10)}>64x48</Button>
