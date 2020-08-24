@@ -55,7 +55,7 @@ const PrettoSlider = withStyles({
         }
         return (
             <div className={sliderClasses.SliderWrapper}>
-                <label>
+                <label style={{color: "rgb(121, 118, 118)"}}>
                         Speed    
                     </label>
                 <PrettoSlider 

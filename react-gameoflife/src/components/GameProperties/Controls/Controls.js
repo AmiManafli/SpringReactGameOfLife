@@ -5,12 +5,13 @@ import Button from '../../../elements/Button/Button';
 import Slider from '../../../elements/Slider/Slider';
 import ButtonGroup from '../Controls/ButtonGroup/ButtonGroup';
 import PropertiesPanel from '../PropertiesPanel';
+import GameRules from '../GameRules/GameRules';
 
 const Controls = (props) => {
     return (
         <div>
             <PropertiesPanel>
-            <h1 style={{textTransform: "uppercase", color: "#a0a0a0", alignSelf: "flex-start", padding: "7px", fontSize: "1.5rem"}}>Controls</h1>
+            <h1 style={{textTransform: "uppercase", color: "rgb(121, 118, 118)", alignSelf: "flex-start", padding: "7px", fontSize: "1.5rem"}}>Controls</h1>
             <div className={classes.ControlButtonsWrapper}>
                 <Button type="submit" name="test" clicked={props.newMapHandler}>New Map</Button>
                 {props.isRunning ? 
@@ -22,6 +23,7 @@ const Controls = (props) => {
             <Slider onChangeHandler={props.speedChangeHandler}/> 
             <ButtonGroup clicked={props.sizeChangeHandler}/>
             </PropertiesPanel>
+            <GameRules />
         </div>
     )
 }

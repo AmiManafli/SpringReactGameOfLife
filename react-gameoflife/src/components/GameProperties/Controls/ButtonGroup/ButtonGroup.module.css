@@ -29,7 +29,7 @@
     display: table;
   }
 
-
-  .BtnGroup button:hover {
+  .BtnGroup button:hover   {
     background-color: #c5c1cf;
   }
+ 
